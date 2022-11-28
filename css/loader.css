@@ -1,4 +1,3 @@
-/* ----------LOADER----------------  */
 @keyframes loader {
   0% {
     opacity: 1;
@@ -99,25 +98,4 @@
 }
 .loader div {
   box-sizing: content-box;
-}
-/* ------------------------END-LOADER--------------------------  */
-
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex > div {
-  margin: 0 1rem 2rem 1rem;
-  text-align: center;
-}
-.options-panel {
-}
-.friends {
-}
-img {
-  display: inline-block;
-  max-width: 100%;
 }

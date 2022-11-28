@@ -10,12 +10,12 @@
 // name: Object { title: "Miss", first: "آیناز", last: "کریمی" }
 // phone: "005-78896313"
 // picture: Object { large: "https://randomuser.me/api/portraits/women/62.jpg", medium: "https://randomuser.me/api/portraits/med/women/62.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/women/62.jpg" }
+export const mainWrapper = document.querySelector(".wrapper");
 import { toggleLoader } from "./loader.js";
 import { handlerError } from "./handlerError.js";
 // const spinner = document.querySelector(".loading-spinner");
-export const mainWrapper = document.querySelector(".wrapper");
 
-let friends = 10;
+let friends = 1;
 let friendsList;
 const url = `https://randomuser.me/api/?results=${friends}&inc=gender,name,email,dob,phone,picture&seed=foobar`;
 const getData = async () => {
@@ -33,8 +33,9 @@ const getData = async () => {
     console.log("You got an error", err);
   }
 };
-await getData();
-console.log(friendsList);
+
+const data = await getData();
+console.log(data, friendsList);
 // const friends = [...friendsList];
 // const root = document.querySelector("#root");
 // let fragment = document.createDocumentFragment();

@@ -4,15 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon-32x32.png" />
+    <title>FriendsApp</title>
   </head>
   <body>
-    <main>
+    <header class="header">
       <h1>Friends</h1>
+    </header>
+    <main>
       <div class="wrapper">
-        <div class="options-panel"></div>
-        <div class="friends"></div>
+        <section class="options-panel"></section>
+        <section class="friends-list">
+          <div class="card">
+            <div class="face">
+              <img
+                class="user-photo"
+                src="https://randomuser.me/api/portraits/women/62.jpg"
+                alt="${friend.name.first} photo"
+              />
+            </div>
+            <div class="info-slider">
+              <h2>${friend.name.first}${friend.name.last}</h2>
+              <p class="email">${friend.email}</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="face"></div>
+            <div class="info-slider"></div>
+          </div>
+          <div class="card">
+            <div class="face"></div>
+            <div class="info-slider"></div>
+          </div>
+          <div class="card">
+            <div class="face"></div>
+            <div class="info-slider"></div>
+          </div>
+        </section>
       </div>
     </main>
     <script type="module" src="./src/app.js"></script>

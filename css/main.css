@@ -1,0 +1,44 @@
+@import "loader.css";
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 21rem 1fr;
+  grid-gap: 1rem;
+}
+
+.options-panel {
+  background: aqua;
+}
+
+.friends-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  grid-gap: 1rem;
+  background-color: bisque;
+}
+
+.card {
+  /* position: relative; */
+  box-sizing: border-box;
+  border: 0.05rem solid;
+  border-radius: 20%;
+  background: #ffeeee;
+}
+
+.face {
+  position: relative;
+  width: 21rem;
+  height: 17rem;
+  z-index: 0;
+}
+
+.info-slider {
+  position: absolute;
+  height: 13rem;
+  background: rgba(255, 252, 237, 0.37);
+  backdrop-filter: blur(27.5px);
+  z-index: 10;
+}
+.user-photo {
+  border-radius: 30%;
+}

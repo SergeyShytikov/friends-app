@@ -20,7 +20,6 @@ export function toggleLoader(isShowing) {
     mainWrapper.insertAdjacentHTML("afterbegin", spinnerHtml);
   } else {
     const spinner = document.querySelector(".loading-spinner");
-    console.log(spinner);
     const remove = () => {
       spinner.remove();
     };
