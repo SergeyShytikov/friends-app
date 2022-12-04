@@ -23,6 +23,7 @@ export function toggleLoader(isShowing) {
     const remove = () => {
       spinner.remove();
     };
-    setTimeout(remove, 3000);
+    remove();
+    // setTimeout(remove, 3000);
   }
 }

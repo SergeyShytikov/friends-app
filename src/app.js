@@ -13,11 +13,9 @@
 export const mainWrapper = document.querySelector(".wrapper");
 import { toggleLoader } from "./loader.js";
 import { handlerError } from "./handlerError.js";
-// const spinner = document.querySelector(".loading-spinner");
 
-let friends = 1;
-let friendsList;
-const url = `https://randomuser.me/api/?results=${friends}&inc=gender,name,email,dob,phone,picture&seed=foobar`;
+let countOfFriends = 100;
+const url = `https://randomuser.me/api/?results=${countOfFriends}&inc=gender,name,email,dob,phone,picture&seed=foobar`;
 const getData = async () => {
   try {
     toggleLoader(true);
@@ -26,8 +24,8 @@ const getData = async () => {
       .then((response) => response.json())
       .then((json) => json.results)
       .then((data) => {
-        friendsList = data;
         toggleLoader(false);
+        return data;
       });
   } catch (err) {
     console.log("You got an error", err);
@@ -35,23 +33,32 @@ const getData = async () => {
 };
 
 const data = await getData();
-console.log(data, friendsList);
-// const friends = [...friendsList];
-// const root = document.querySelector("#root");
-// let fragment = document.createDocumentFragment();
-// friends.forEach((friend) => {
-//   fragment += `
-//   <div class="person">
-//   <img src="${friend.picture.medium}" alt="${friend.name.first} photo"></img>
-//     <h2>
-//         ${friend.name.first}
-//         ${friend.name.last}
-//     </h2>
-//     <p class="email">${friend.email}</p>
-//   </div>
-// `;
-// });
-// console.log(fragment);
-// root.innerHTML = fragment;
-// console.log(root);
-// // поиск по имени или фамилии,
+const friends = [...data];
+
+function createFriendCards(friends) {
+  const friendsList = document.querySelector(".friends-list");
+  let fragment = "";
+  friends.forEach((friend) => {
+    fragment += `
+    <div class="card">
+      <div class="face">
+        <img class="friend-photo"
+          src="${friend.picture.large}"
+          alt="${friend.name.first} photo"/>
+      </div>
+      <div class="info-slider">
+        <div class="name">
+          <h2>${friend.name.first}
+          ${friend.name.last}</h2>
+        </div>
+        <span class="age">I'm ${friend.dob.age} years</span>
+        <div class="contacts">
+          <a href="mailto:${friend.email}">${friend.email}</a>
+          <a href="tel:${friend.phone}"> call to me </a>
+        </div>
+      </div>
+  </div>`;
+  });
+  friendsList.innerHTML = fragment;
+}
+createFriendCards(friends);
