@@ -34,6 +34,16 @@ const getData = async () => {
 
 const data = await getData();
 const friends = [...data];
+const friendsPerPage = 16;
+const totalPages = Math.ceil(friends.length / friendsPerPage);
+console.log(totalPages);
+
+function paginateFriends(friends, pageNumber) {
+  const startIndex = (pageNumber - 1) * friendsPerPage;
+  const endIndex = startIndex + friendsPerPage;
+  const pageFriends = friends.slice(startIndex, endIndex);
+  return pageFriends;
+}
 
 function createFriendCards(friends) {
   const friendsList = document.querySelector(".friends-list");
@@ -61,4 +71,4 @@ function createFriendCards(friends) {
   });
   friendsList.innerHTML = fragment;
 }
-createFriendCards(friends);
+createFriendCards(paginateFriends(friends, 1));
