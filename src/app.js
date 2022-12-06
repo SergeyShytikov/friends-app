@@ -14,7 +14,9 @@ export const mainWrapper = document.querySelector(".wrapper");
 import { toggleLoader } from "./loader.js";
 import { handlerError } from "./handlerError.js";
 
-let countOfFriends = 100;
+const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
+const countOfFriends = generateRandomNumber();
+
 const url = `https://randomuser.me/api/?results=${countOfFriends}&inc=gender,name,email,dob,phone,picture&seed=foobar`;
 const getData = async () => {
   try {
@@ -37,13 +39,15 @@ const friends = [...data];
 const friendsPerPage = 16;
 const totalPages = Math.ceil(friends.length / friendsPerPage);
 console.log(totalPages);
+let currentPage = 1;
 
-function paginateFriends(friends, pageNumber) {
-  const startIndex = (pageNumber - 1) * friendsPerPage;
+function paginateFriends(friends, currentPage) {
+  const startIndex = (currentPage - 1) * friendsPerPage;
   const endIndex = startIndex + friendsPerPage;
   const pageFriends = friends.slice(startIndex, endIndex);
   return pageFriends;
 }
+const paginatedFriends = paginateFriends(friends, currentPage);
 
 function createFriendCards(friends) {
   const friendsList = document.querySelector(".friends-list");
@@ -71,4 +75,26 @@ function createFriendCards(friends) {
   });
   friendsList.innerHTML = fragment;
 }
-createFriendCards(paginateFriends(friends, 1));
+createFriendCards(paginatedFriends);
+
+function buttonsForPagination(totalPages, currentPage) {
+  if (totalPages <= 1) return;
+  let paginationHTML = `
+  <div class="pagination">
+    <button class="pagination-button pagination-left"></button>
+    <button class="pagination-button pagination-right"></button>
+  </div>`;
+  const cardsList = document.querySelector(".cards-list");
+  cardsList.insertAdjacentHTML("beforeend", paginationHTML);
+  const prevPageButton = document.querySelector(".pagination-left");
+  const nextPageButton = document.querySelector(".pagination-right");
+  prevPageButton.style.display = currentPage === 1 ? "none" : "block";
+  nextPageButton.style.display = currentPage === totalPages ? "none" : "block";
+  const pagination = document.querySelector(".pagination");
+  pagination.addEventListener("click", ({ target }) => {
+    if (target.classList.contains("pagination-left")) {
+    }
+    console.log(target.classList.contains("pagination-right"));
+  });
+}
+buttonsForPagination(totalPages, currentPage);

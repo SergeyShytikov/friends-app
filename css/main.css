@@ -8,15 +8,35 @@
 .wrapper {
   display: grid;
   grid-template-columns: 21rem 1fr;
-  grid-gap: 1rem;
+  gap: 1rem;
 }
 
 .options-panel {
   background: aqua;
 }
 
+.cards-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1rem;
+  gap: 1rem;
+}
+
+.pagination-button {
+  width: 42.5rem;
+}
+
 .friends-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-  grid-gap: 1rem;
+  gap: 1rem;
+}
+.pagination-left {
+}
+.pagination-right {
 }
