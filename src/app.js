@@ -36,6 +36,8 @@ const getData = async () => {
 
 const data = await getData();
 const friends = [...data];
+const totalFriends = friends.length;
+console.log(totalFriends);
 const friendsPerPage = 16;
 const totalPages = Math.ceil(friends.length / friendsPerPage);
 console.log(totalPages);
@@ -47,7 +49,7 @@ function paginateFriends(friends, currentPage) {
   const pageFriends = friends.slice(startIndex, endIndex);
   return pageFriends;
 }
-const paginatedFriends = paginateFriends(friends, currentPage);
+let paginatedFriends = paginateFriends(friends, currentPage);
 
 function createFriendCards(friends) {
   const friendsList = document.querySelector(".friends-list");
@@ -88,13 +90,20 @@ function buttonsForPagination(totalPages, currentPage) {
   cardsList.insertAdjacentHTML("beforeend", paginationHTML);
   const prevPageButton = document.querySelector(".pagination-left");
   const nextPageButton = document.querySelector(".pagination-right");
-  prevPageButton.style.display = currentPage === 1 ? "none" : "block";
-  nextPageButton.style.display = currentPage === totalPages ? "none" : "block";
+  prevPageButton.style.visibility = currentPage === 1 ? "hidden" : "visible";
+  nextPageButton.style.visibility =
+    currentPage === totalPages ? "hidden" : "visible";
   const pagination = document.querySelector(".pagination");
   pagination.addEventListener("click", ({ target }) => {
     if (target.classList.contains("pagination-left")) {
+      createFriendCards(paginateFriends(friends, currentPage - 1));
+      currentPage -= 1;
+      console.log(currentPage);
+    } else if (target.classList.contains("pagination-right")) {
+      createFriendCards(paginateFriends(friends, currentPage + 1));
+      currentPage += 1;
+      console.log(currentPage);
     }
-    console.log(target.classList.contains("pagination-right"));
   });
 }
 buttonsForPagination(totalPages, currentPage);
