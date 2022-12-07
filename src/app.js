@@ -36,20 +36,22 @@ const getData = async () => {
 
 const data = await getData();
 const friends = [...data];
-const totalFriends = friends.length;
-console.log(totalFriends);
-const friendsPerPage = 16;
-const totalPages = Math.ceil(friends.length / friendsPerPage);
-console.log(totalPages);
-let currentPage = 1;
+console.log(`Total friends ${friends.length}`);
 
-function paginateFriends(friends, currentPage) {
-  const startIndex = (currentPage - 1) * friendsPerPage;
-  const endIndex = startIndex + friendsPerPage;
-  const pageFriends = friends.slice(startIndex, endIndex);
-  return pageFriends;
+function mappingFriends(friends, friendsPerPage) {
+  const createSlice = (index, result) => {
+    const sliceLength = Math.min(friendsPerPage, friends.length - index);
+    const slice = friends.slice(index, index + sliceLength);
+    result.set(result.size + 1, slice);
+  };
+  const mappedFriends = friends.reduce((result, element, index) => {
+    if (index % friendsPerPage === 0) {
+      createSlice(index, result);
+    }
+    return result;
+  }, new Map());
+  return mappedFriends;
 }
-let paginatedFriends = paginateFriends(friends, currentPage);
 
 function createFriendCards(friends) {
   const friendsList = document.querySelector(".friends-list");
@@ -77,10 +79,10 @@ function createFriendCards(friends) {
   });
   friendsList.innerHTML = fragment;
 }
-createFriendCards(paginatedFriends);
 
-function buttonsForPagination(totalPages, currentPage) {
+function buttonsForPagination(totalPages) {
   if (totalPages <= 1) return;
+  // let currentPage = 1;
   let paginationHTML = `
   <div class="pagination">
     <button class="pagination-button pagination-left"></button>
@@ -88,6 +90,9 @@ function buttonsForPagination(totalPages, currentPage) {
   </div>`;
   const cardsList = document.querySelector(".cards-list");
   cardsList.insertAdjacentHTML("beforeend", paginationHTML);
+}
+
+function addingEvntListners(currentPage, totalPages, mappedFriends) {
   const prevPageButton = document.querySelector(".pagination-left");
   const nextPageButton = document.querySelector(".pagination-right");
   prevPageButton.style.visibility = currentPage === 1 ? "hidden" : "visible";
@@ -96,14 +101,24 @@ function buttonsForPagination(totalPages, currentPage) {
   const pagination = document.querySelector(".pagination");
   pagination.addEventListener("click", ({ target }) => {
     if (target.classList.contains("pagination-left")) {
-      createFriendCards(paginateFriends(friends, currentPage - 1));
+      createFriendCards(mappedFriends.get(currentPage - 1));
       currentPage -= 1;
       console.log(currentPage);
     } else if (target.classList.contains("pagination-right")) {
-      createFriendCards(paginateFriends(friends, currentPage + 1));
+      createFriendCards(mappedFriends.get(currentPage + 1));
       currentPage += 1;
       console.log(currentPage);
     }
   });
 }
-buttonsForPagination(totalPages, currentPage);
+
+function main(friends) {
+  let currentPage = 1;
+  const friendsPerPage = 16;
+  const mappedFriends = mappingFriends(friends, friendsPerPage);
+  const totalPages = mappedFriends.size;
+  createFriendCards(mappedFriends.get(currentPage));
+  buttonsForPagination(totalPages);
+  addingEvntListners(currentPage, totalPages, mappedFriends);
+}
+main(friends);
