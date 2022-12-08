@@ -82,34 +82,39 @@ function createFriendCards(friends) {
 
 function buttonsForPagination(totalPages) {
   if (totalPages <= 1) return;
-  // let currentPage = 1;
   let paginationHTML = `
   <div class="pagination">
-    <button class="pagination-button pagination-left"></button>
+    <button class="pagination-button pagination-left hidden"></button>
     <button class="pagination-button pagination-right"></button>
   </div>`;
   const cardsList = document.querySelector(".cards-list");
   cardsList.insertAdjacentHTML("beforeend", paginationHTML);
-}
-
-function addingEvntListners(currentPage, totalPages, mappedFriends) {
   const prevPageButton = document.querySelector(".pagination-left");
   const nextPageButton = document.querySelector(".pagination-right");
-  prevPageButton.style.visibility = currentPage === 1 ? "hidden" : "visible";
-  nextPageButton.style.visibility =
-    currentPage === totalPages ? "hidden" : "visible";
+}
+
+function addingEvntListners(currentPage, mappedFriends, totalPages) {
   const pagination = document.querySelector(".pagination");
   pagination.addEventListener("click", ({ target }) => {
     if (target.classList.contains("pagination-left")) {
       createFriendCards(mappedFriends.get(currentPage - 1));
       currentPage -= 1;
-      console.log(currentPage);
     } else if (target.classList.contains("pagination-right")) {
       createFriendCards(mappedFriends.get(currentPage + 1));
       currentPage += 1;
-      console.log(currentPage);
     }
+    hidingButton(target, currentPage, totalPages);
   });
+}
+
+function hidingButton(button, currentPage, totalPages) {
+  if (currentPage > 1) {
+    button.previousElementSibling.classList.remove("hidden");
+  } else if (currentPage === totalPages) {
+    button.classList.toggle("hidden");
+  } else if (currentPage === 1) {
+    button.classList.toggle("hidden");
+  }
 }
 
 function main(friends) {
@@ -119,6 +124,6 @@ function main(friends) {
   const totalPages = mappedFriends.size;
   createFriendCards(mappedFriends.get(currentPage));
   buttonsForPagination(totalPages);
-  addingEvntListners(currentPage, totalPages, mappedFriends);
+  addingEvntListners(currentPage, mappedFriends, totalPages);
 }
 main(friends);

@@ -1,0 +1,24 @@
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1rem;
+  gap: 1rem;
+}
+
+.pagination-button {
+  width: 42.5rem;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.pagination-left {
+}
+
+.pagination-right {
+}
