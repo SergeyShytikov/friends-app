@@ -2,10 +2,6 @@
 @import "friend-card.css";
 @import "pagination.css";
 
-.header {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
 .wrapper {
   display: grid;
   grid-template-columns: 21rem 1fr;

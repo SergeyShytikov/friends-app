@@ -9,10 +9,6 @@
   width: 42.5rem;
 }
 
-.visible {
-  visibility: visible;
-}
-
 .hidden {
   visibility: hidden;
 }
