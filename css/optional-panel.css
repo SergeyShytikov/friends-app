@@ -1,0 +1,26 @@
+.optionsl-panel {
+}
+
+.searchSortFilterForm {
+}
+
+.searchByName {
+}
+
+.searchLabel {
+}
+
+.sortByAge {
+}
+
+.sortByName {
+}
+
+.filterByGender {
+}
+
+.radioWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}

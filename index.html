@@ -11,7 +11,54 @@
   <body>
     <main>
       <div class="wrapper">
-        <section class="options-panel"></section>
+        <section class="options-panel">
+          <header><h1>FriendsApp</h1></header>
+          <form class="searchSortFilterForm" action="#" method="post">
+            <div class="searchByName">
+              <!-- prettier-ignore -->
+              <label for="searchName" class="searchLabel"> Search by name: </label>
+              <!-- prettier-ignore -->
+              <input type="text" name="searchName" id="searchName" class="inputField"/>
+            </div>
+            <div class="sortByAge">
+              <p>Sort by Age:</p>
+              <div class="radioWrapper">
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ageUp" id="ageUp"/>
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+              </div>
+            </div>
+            <div class="sortByName">
+              <p>Sort by name:</p>
+              <div class="radioWrapper">
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="AtoZ" id="AtoZ"/>
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ZtoA"id="ZtoA"/>
+              </div>
+            </div>
+            <div class="filterByGender">
+              <p>Filter by gender:</p>
+              <div class="radioWrapper">
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+                <!-- prettier-ignore -->
+                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+              </div>
+            </div>
+            <div class="reset">
+              <input class="input" type="reset" value="" />
+              <span class="">Reset</span>
+            </div>
+          </form>
+          <form action="" class="deleteAddFriend">
+            <div class="addFriend"></div>
+            <div class="deleteFriend"></div>
+          </form>
+        </section>
         <section class="cards-list">
           <div class="friends-list"></div>
         </section>

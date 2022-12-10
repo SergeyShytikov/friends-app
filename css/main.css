@@ -1,6 +1,7 @@
 @import "loader.css";
 @import "friend-card.css";
 @import "pagination.css";
+@import "optional-panel.css";
 
 .wrapper {
   display: grid;
