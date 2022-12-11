@@ -21,32 +21,53 @@
               <input type="text" name="searchName" id="searchName" class="inputField"/>
             </div>
             <div class="sortByAge">
-              <p>Sort by Age:</p>
+              <p>Sort by age:</p>
               <div class="radioWrapper">
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ageUp" id="ageUp"/>
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="sort-age" value="ageUp" id="ageUp"/>
+                  <label for="ageUp">0=>100</label>
+                </div>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="sort-age" value="ageDown" id="ageDown"/>
+                  <label for="ageDown">100=>0</label>
+                </div>
               </div>
             </div>
             <div class="sortByName">
               <p>Sort by name:</p>
               <div class="radioWrapper">
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="AtoZ" id="AtoZ"/>
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ZtoA"id="ZtoA"/>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="sort-name" value="fromA" id="fromA"/>
+                  <label for="fromA">A ==> </label>
+                </div>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="sort-name" value="toA"id="toA"/>
+                  <label for="toA">A <== </label>
+                </div>
               </div>
             </div>
             <div class="filterByGender">
               <p>Filter by gender:</p>
               <div class="radioWrapper">
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
-                <!-- prettier-ignore -->
-                <input class="input" type="radio" name="sort" value="ageDown" id="ageDown"/>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="gender" value="women" id="women"/>
+                  <label for="women">Women</label>
+                </div>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="gender" value="men" id="men"/>
+                  <label for="men">Men</label>
+                </div>
+                <div>
+                  <!-- prettier-ignore -->
+                  <input class="input" type="radio" name="gender" value="all" id="all"/>
+                  <label for="all">All</label>
+                </div>
               </div>
             </div>
             <div class="reset">

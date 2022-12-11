@@ -19,6 +19,13 @@
 .filterByGender {
 }
 
+.input {
+}
+
+label {
+  margin: 0.4rem;
+}
+
 .radioWrapper {
   display: flex;
   flex-direction: column;

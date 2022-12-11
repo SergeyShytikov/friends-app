@@ -82,3 +82,8 @@ function main(friends) {
   }
 }
 main(friends);
+
+const optionsPanel = document.querySelector(".options-panel");
+optionsPanel.addEventListener("input", ({ target }) => {
+  console.log(target);
+});
