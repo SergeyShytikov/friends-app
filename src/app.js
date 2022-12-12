@@ -83,7 +83,19 @@ function main(friends) {
 }
 main(friends);
 
+function sortByAge(friends, target) {
+  const sortedFriends =
+    target.value === "ageUp"
+      ? friends.sort(friendOne, (friendTwo) => {
+          friendTwo.dob.age - friendOne.dob.age;
+        })
+      : friends.sort(friendOne, (friendTwo) => {
+          friendOne.dob.age - friendTwo.dob.age;
+        });
+  return sortedFriends;
+}
+
 const optionsPanel = document.querySelector(".options-panel");
 optionsPanel.addEventListener("input", ({ target }) => {
-  console.log(target);
+  sortByAge;
 });
