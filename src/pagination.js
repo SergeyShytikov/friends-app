@@ -16,13 +16,11 @@ export function mappingFriends(friends, friendsPerPage) {
 }
 
 export function buttonsForPagination(totalPages) {
-  let paginationHTML = `
-  <div class="pagination">
+  let paginationButtons = `
     <button class="pagination-button pagination-left hidden"></button>
-    <button class="pagination-button pagination-right"></button>
-  </div>`;
-  const cardsList = document.querySelector(".cards-list");
-  cardsList.insertAdjacentHTML("beforeend", paginationHTML);
+    <button class="pagination-button pagination-right"></button>`;
+  const pagination = document.querySelector(".pagination");
+  pagination.insertAdjacentHTML("afterbegin", paginationButtons);
 }
 
 export function addingEvntListners(currentPage, mappedFriends, totalPages) {
