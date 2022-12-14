@@ -17,6 +17,7 @@ import {
   mappingFriends,
   buttonsForPagination,
   addingEvntListners,
+  clearingPagination,
 } from "./pagination.js";
 
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
@@ -69,10 +70,6 @@ export function createFriendCards(friends) {
   });
   friendsList.innerHTML = fragment;
 }
-function clearingPagination() {
-  const pagination = document.querySelector(".pagination");
-  pagination.innerHTML = "";
-}
 
 function main(friends) {
   let currentPage = 1;
@@ -101,6 +98,20 @@ function sortByAge(friends, target) {
 }
 
 const optionsPanel = document.querySelector(".options-panel");
-optionsPanel.addEventListener("input", ({ target }) =>
-  main(sortByAge(friends, target))
+optionsPanel.addEventListener(
+  "input",
+  ({ target }) => main(sortByName(friends, target))
+  // main(sortByAge(friends, target))
 );
+
+function sortByName(friends, target) {
+  const sortedFriends =
+    target.value === "fromA"
+      ? friends.sort((friendOne, friendTwo) => {
+          return friendOne.name.first.localeCompare(friendTwo.name.first);
+        })
+      : friends.sort((friendOne, friendTwo) => {
+          return friendTwo.name.first.localeCompare(friendOne.name.first);
+        });
+  return sortedFriends;
+}

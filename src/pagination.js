@@ -52,3 +52,8 @@ function hidingButton(currentPage, totalPages) {
     nextPageButton.classList.add("hidden");
   }
 }
+
+export function clearingPagination() {
+  const pagination = document.querySelector(".pagination");
+  pagination.innerHTML = "";
+}
