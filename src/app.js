@@ -19,6 +19,7 @@ import {
   addingEvntListners,
   clearingPagination,
 } from "./pagination.js";
+import { sortingByAge, sortingByName } from "./friendsTransformations.js";
 
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 const countOfFriends = generateRandomNumber();
@@ -85,33 +86,12 @@ function main(friends) {
 }
 main(friends);
 
-function sortByAge(friends, target) {
-  const sortedFriends =
-    target.value === "ageUp"
-      ? friends.sort((friendOne, friendTwo) => {
-          return friendTwo.dob.age - friendOne.dob.age;
-        })
-      : friends.sort((friendOne, friendTwo) => {
-          return friendOne.dob.age - friendTwo.dob.age;
-        });
-  return sortedFriends;
-}
-
-const optionsPanel = document.querySelector(".options-panel");
-optionsPanel.addEventListener(
-  "input",
-  ({ target }) => main(sortByName(friends, target))
-  // main(sortByAge(friends, target))
+const sortByAgeDiv = document.querySelector(".sort-by-age");
+sortByAgeDiv.addEventListener("input", ({ target }) =>
+  main(sortingByAge(friends, target))
 );
 
-function sortByName(friends, target) {
-  const sortedFriends =
-    target.value === "fromA"
-      ? friends.sort((friendOne, friendTwo) => {
-          return friendOne.name.first.localeCompare(friendTwo.name.first);
-        })
-      : friends.sort((friendOne, friendTwo) => {
-          return friendTwo.name.first.localeCompare(friendOne.name.first);
-        });
-  return sortedFriends;
-}
+const sortByNameDiv = document.querySelector(".sort-by-name");
+sortByNameDiv.addEventListener("input", ({ target }) =>
+  main(sortingByName(friends, target))
+);
