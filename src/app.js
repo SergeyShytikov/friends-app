@@ -107,5 +107,3 @@ filterByGenderDiv.addEventListener("input", ({ target }) =>
 
 const reset = document.querySelector(".reset");
 reset.addEventListener("click", () => main(friends));
-// main(friends)
-// ({ target }) => {console.log(target);
