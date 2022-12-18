@@ -21,3 +21,11 @@ export function sortingByName(friends, target) {
         });
   return sortedFriends;
 }
+
+export function filteringByGender(friends, target) {
+  const filteredFriends =
+    target.value === "male" || target.value === "female"
+      ? friends.filter((friend) => friend.gender === target.value)
+      : friends;
+  return filteredFriends;
+}

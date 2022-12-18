@@ -19,7 +19,11 @@ import {
   addingEvntListners,
   clearingPagination,
 } from "./pagination.js";
-import { sortingByAge, sortingByName } from "./friendsTransformations.js";
+import {
+  filteringByGender,
+  sortingByAge,
+  sortingByName,
+} from "./friendsTransformations.js";
 
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 const countOfFriends = generateRandomNumber();
@@ -95,3 +99,13 @@ const sortByNameDiv = document.querySelector(".sort-by-name");
 sortByNameDiv.addEventListener("input", ({ target }) =>
   main(sortingByName(friends, target))
 );
+
+const filterByGenderDiv = document.querySelector(".filter-by-gender");
+filterByGenderDiv.addEventListener("input", ({ target }) =>
+  main(filteringByGender(friends, target))
+);
+
+const reset = document.querySelector(".reset");
+reset.addEventListener("click", () => main(friends));
+// main(friends)
+// ({ target }) => {console.log(target);
