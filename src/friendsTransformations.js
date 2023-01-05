@@ -1,27 +1,27 @@
-export function sortingByAge(friends, target) {
+export function sortingByAge(friends, order) {
   const sortedFriends = [...friends];
   sortedFriends.sort((friendOne, friendTwo) => {
-    return target.value === "age-up"
+    return (order = "asc"
       ? friendTwo.dob.age - friendOne.dob.age
-      : friendOne.dob.age - friendTwo.dob.age;
+      : friendOne.dob.age - friendTwo.dob.age);
   });
   return sortedFriends;
 }
 
-export function sortingByName(friends, target) {
+export function sortingByName(friends, order) {
   const sortedFriends = [...friends];
   sortedFriends.sort((friendOne, friendTwo) => {
-    return target.value === "from-a"
+    return order === "asc"
       ? friendOne.name.first.localeCompare(friendTwo.name.first)
       : friendTwo.name.first.localeCompare(friendOne.name.first);
   });
   return sortedFriends;
 }
 
-export function filteringByGender(friends, target) {
+export function filteringByGender(friends, gender) {
   const filteredFriends =
-    target.value === "male" || target.value === "female"
-      ? friends.filter((friend) => friend.gender === target.value)
+    gender === "male" || gender === "female"
+      ? friends.filter((friend) => friend.gender === gender)
       : friends;
   return filteredFriends;
 }

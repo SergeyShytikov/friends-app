@@ -76,7 +76,7 @@ export function createFriendCards(friends) {
   friendsList.innerHTML = fragment;
 }
 
-function main(friends) {
+function renderFriends(friends) {
   let currentPage = 1;
   const friendsPerPage = 16;
   clearingPagination();
@@ -88,22 +88,29 @@ function main(friends) {
     addingEvntListners(currentPage, mappedFriends, totalPages);
   }
 }
-main(friends);
-
+renderFriends(friends);
+let checkedAll = true;
 const sortByAgeDiv = document.querySelector(".sort-by-age");
-sortByAgeDiv.addEventListener("input", ({ target }) =>
-  main(sortingByAge(friends, target))
-);
+sortByAgeDiv.addEventListener("input", ({ target }) => {
+  let order = target.value === "age-up" ? "asc" : "dsc";
+  // const byGender = filteringByGender(friends, gender);
+  const byAge = sortingByAge(friends, order);
+  renderFriends(byAge);
+});
 
 const sortByNameDiv = document.querySelector(".sort-by-name");
-sortByNameDiv.addEventListener("input", ({ target }) =>
-  main(sortingByName(friends, target))
-);
+sortByNameDiv.addEventListener("input", ({ target }) => {
+  let order = target.value === "from-a" ? "asc" : "dsc";
+  const byName = sortingByName(friends, order);
+  renderFriends(byName);
+});
 
 const filterByGenderDiv = document.querySelector(".filter-by-gender");
-filterByGenderDiv.addEventListener("input", ({ target }) =>
-  main(filteringByGender(friends, target))
-);
+filterByGenderDiv.addEventListener("input", ({ target }) => {
+  let gender = target.value === "male" ? "male" : "female";
+  const byGender = filteringByGender(friends, gender);
+  renderFriends(byGender);
+});
 
 const reset = document.querySelector(".reset");
-reset.addEventListener("click", () => main(friends));
+reset.addEventListener("click", () => renderFriends(friends));
